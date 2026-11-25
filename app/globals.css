@@ -8,7 +8,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --slide-spacing: 1rem;
-  --slide-max-width: min(85vw, 960px);
+  --slide-max-width: min(calc(100vw - 32px), 960px);
   --slide-max-height: min(70vh, 640px);
 }
 

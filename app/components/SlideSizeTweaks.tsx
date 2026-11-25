@@ -5,7 +5,7 @@ import { Pane } from "tweakpane";
 
 const PARAMS = {
   spacingRem: 1,
-  maxWidthVw: 85,
+  // maxWidthVw: 85,
   maxWidthPx: 960,
   maxHeightVh: 70,
   maxHeightPx: 640,
@@ -16,7 +16,7 @@ function applySlideVars() {
   root.style.setProperty("--slide-spacing", `${PARAMS.spacingRem}rem`);
   root.style.setProperty(
     "--slide-max-width",
-    `min(${PARAMS.maxWidthVw}vw, ${PARAMS.maxWidthPx}px)`,
+    `min(calc(100vw - 32px), ${PARAMS.maxWidthPx}px)`,
   );
   root.style.setProperty(
     "--slide-max-height",
@@ -49,14 +49,14 @@ export default function SlideSizeTweaks() {
       .on("change", applySlideVars);
 
     const width = pane.addFolder({ title: "Max width" });
-    width
-      .addBinding(PARAMS, "maxWidthVw", {
-        label: "vw",
-        min: 20,
-        max: 100,
-        step: 1,
-      })
-      .on("change", applySlideVars);
+    // width
+    //   .addBinding(PARAMS, "maxWidthVw", {
+    //     label: "vw",
+    //     min: 20,
+    //     max: 100,
+    //     step: 1,
+    //   })
+    //   .on("change", applySlideVars);
     width
       .addBinding(PARAMS, "maxWidthPx", {
         label: "px",
@@ -84,17 +84,15 @@ export default function SlideSizeTweaks() {
       })
       .on("change", applySlideVars);
 
-    pane
-      .addButton({ title: "Reset" })
-      .on("click", () => {
-        PARAMS.spacingRem = 1;
-        PARAMS.maxWidthVw = 85;
-        PARAMS.maxWidthPx = 960;
-        PARAMS.maxHeightVh = 70;
-        PARAMS.maxHeightPx = 640;
-        pane.refresh();
-        applySlideVars();
-      });
+    pane.addButton({ title: "Reset" }).on("click", () => {
+      PARAMS.spacingRem = 1;
+      // PARAMS.maxWidthVw = 85;
+      PARAMS.maxWidthPx = 960;
+      PARAMS.maxHeightVh = 70;
+      PARAMS.maxHeightPx = 640;
+      pane.refresh();
+      applySlideVars();
+    });
 
     applySlideVars();
 
