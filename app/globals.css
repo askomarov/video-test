@@ -54,8 +54,7 @@ body {
   padding-left: var(--slide-spacing);
 }
 
-.embla__slide img,
-.embla__slide video {
+.embla__slide > .relative > img {
   display: block;
   width: auto;
   height: auto;
@@ -63,14 +62,91 @@ body {
   max-height: var(--slide-max-height);
 }
 
-.embla__slide img.embla__poster-blur {
+/* Жёсткая коробка: width/height задаются inline в px */
+.embla__media {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.embla__media-el {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+}
+
+.embla__poster-cover {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
-  max-height: none;
+  object-fit: contain;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.embla__poster-cover.is-hidden {
+  opacity: 0;
+}
+
+.embla__loader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.embla__loader.is-active {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.embla__loader.is-hidden {
+  opacity: 0;
+  animation-play-state: paused;
+}
+
+.embla__spinner {
+  width: 3rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border: 3px solid rgb(255 255 255 / 35%);
+  border-top-color: purple;
+  border-radius: 50%;
+  animation: embla-spin 0.7s linear infinite;
+}
+
+@keyframes embla-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.embla__poster-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .embla__buttons {
@@ -100,7 +176,6 @@ body {
 .embla__button:hover {
   background-color: #333;
 }
-
 
 .embla__button--disabled {
   opacity: 0.3;

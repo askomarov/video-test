@@ -22,6 +22,7 @@ function applySlideVars() {
     "--slide-max-height",
     `min(${PARAMS.maxHeightVh}vh, ${PARAMS.maxHeightPx}px)`,
   );
+  window.dispatchEvent(new Event("slide-size-vars"));
 }
 
 export default function SlideSizeTweaks() {
