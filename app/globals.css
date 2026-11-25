@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.embla {
+  --slide-spacing: 1rem;
+  --slide-max-width: min(85vw, 960px);
+  --slide-max-height: min(70vh, 640px);
+  width: 100%;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: calc(var(--slide-max-width) + var(--slide-spacing));
+  padding-left: var(--slide-spacing);
+}
+
+.embla__slide img,
+.embla__slide video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: var(--slide-max-width);
+  max-height: var(--slide-max-height);
+}
+
+.embla__slide img.embla__poster-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+.embla__buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.embla__button {
+  background-color: #a61cd4;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: auto;
+  padding-inline: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.embla__button:hover {
+  background-color: #333;
+}
+
+
+.embla__button--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
