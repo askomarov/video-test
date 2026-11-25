@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+#nl-badge-frame {
+  /* remove netlify badge */
+  display: none !important;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --slide-spacing: 1rem;
+  --slide-max-width: min(85vw, 960px);
+  --slide-max-height: min(70vh, 640px);
 }
 
 @theme inline {
@@ -26,9 +33,6 @@ body {
 }
 
 .embla {
-  --slide-spacing: 1rem;
-  --slide-max-width: min(85vw, 960px);
-  --slide-max-height: min(70vh, 640px);
   width: 100%;
 }
 
